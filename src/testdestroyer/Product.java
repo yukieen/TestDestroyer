@@ -10,9 +10,7 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 
 public class Product {
-	/**
-	 * プロダクトクラス
-	 */
+
 	private ICompilationUnit compilationUnit;
 	
 	Product(ICompilationUnit compilationUnit){
