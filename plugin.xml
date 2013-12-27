@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.ui.popupMenus">
+	  <viewerContribution targetID="#CompilationUnitEditorContext" id="TestDestroyer">
+	     <action label="壁外調査" class="testdestroyer.SearchAction" menubarPath="additions" id="testdestroyer.SearchAction">
+	        <selection class="org.eclipse.jface.text.ITextSelection"></selection>
+	     </action>
+	  </viewerContribution>
+	</extension>
+</plugin>
