@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: testdestroyer.Activator
 Bundle-Vendor: haljik & yukieen
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.ui;bundle-version="3.9.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.jdt.core
