@@ -1,7 +1,7 @@
 package testdestroyer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -17,20 +17,20 @@ public class Product {
 		this.compilationUnit = compilationUnit;
 	}
 	
-	public List<IMethod> getTestableMethods(){
-		List<IMethod> list = new ArrayList<IMethod>();
+	public Set<IMethod> getTestableMethods(){
+		Set<IMethod> set = new HashSet<IMethod>();
 		try {
 			for (IType type : compilationUnit.getAllTypes()) {
 				for (IMethod method : type.getMethods()) {
 					if (Flags.AccPrivate == method.getFlags()) {
 						continue;
 					}
-					list.add(method);
+					set.add(method);
 				}
 			}
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return set;
 	}
 }
