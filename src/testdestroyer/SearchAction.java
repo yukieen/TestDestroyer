@@ -25,28 +25,16 @@ public class SearchAction implements IEditorActionDelegate {
 	
 	@Override
 	public void run(IAction action) {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		MessageDialog.openInformation(
-				workbench.getActiveWorkbenchWindow().getShell(),
-				"TestDestory",
-				"成功！");
 		IJavaElement je = JavaUI.getEditorInputJavaElement(this.targetEditer.getEditorInput());
-		ICompilationUnit c = (ICompilationUnit)je;
+		Product product = new Product((ICompilationUnit)je);
+		List<IMethod> testableMethods = product.getTestableMethods();
+		
 		StringBuilder sb = new StringBuilder();
-		try {
-			for (IType type : c.getAllTypes()) {
-				for (IMethod method : type.getMethods()) {
-					if (Flags.AccPrivate == method.getFlags()) {
-						continue;
-					}
-					sb.append(method.getElementName());
-				}
-			}
-		} catch (JavaModelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(IMethod method : testableMethods){
+			sb.append(method.getElementName() + "<>");
 		}
 		
+		IWorkbench workbench = PlatformUI.getWorkbench();
 		MessageDialog.openInformation(
 				workbench.getActiveWorkbenchWindow().getShell(),
 				"TestDestory",
