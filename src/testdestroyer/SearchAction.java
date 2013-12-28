@@ -34,6 +34,9 @@ public class SearchAction implements IEditorActionDelegate {
 				.append(getMethodFullName(m))
 				.append(System.getProperty("line.separator"));
 		}
+		if(message.length() == 0){
+			message.append("この付近に巨人は見当たりませんでした");
+		}
 		showMessageDialog("調査報告", message);
 	}
 	
@@ -45,7 +48,7 @@ public class SearchAction implements IEditorActionDelegate {
 						method.getParameterNames(),
 						false,
 						true
-					) + " " + method.getSourceRange().getLength() + "m";
+					) + "方面に" + method.getSourceRange().getLength() + "m級の巨人を発見！";
 		} catch (JavaModelException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

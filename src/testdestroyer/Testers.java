@@ -8,6 +8,7 @@ import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMember;
 import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.corext.callhierarchy.CallHierarchy;
 import org.eclipse.jdt.internal.corext.callhierarchy.MethodWrapper;
 
@@ -33,9 +34,15 @@ public class Testers {
 	
 	private boolean containsJUnit4TestMethod(Set<IMethod> callers) {
 		for (IMethod m : callers) {
-			IAnnotation a = m.getAnnotation("Test");
-			if (a.exists()) {
-				return true;
+			try {
+				IAnnotation[] as = m.getAnnotations();
+				for (IAnnotation a : as) {
+					if (a.getElementName().equals("Test")) {
+						return true;
+					}
+				}
+			} catch (JavaModelException e) {
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -44,7 +51,7 @@ public class Testers {
 	private Set<IMethod> getCallers(IMethod m) {
 		 CallHierarchy callHierarchy = CallHierarchy.getDefault();
 		 
-		 IMember[] members = this.methods.toArray(new IMember[this.methods.size()]);
+		 IMember[] members = {m};
 		 
 		 MethodWrapper[] methodWrappers = callHierarchy.getCallerRoots(members);
 		 Set<IMethod> callers = new HashSet<IMethod>();

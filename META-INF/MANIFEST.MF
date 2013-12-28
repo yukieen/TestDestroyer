@@ -7,6 +7,7 @@ Bundle-Activator: testdestroyer.Activator
 Bundle-Vendor: haljik & yukieen
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.jdt.ui;bundle-version="3.9.1"
+ org.eclipse.jdt.ui;bundle-version="3.9.1",
+ org.junit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.eclipse.jdt.core
